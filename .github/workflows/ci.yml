@@ -3,14 +3,14 @@ on: push
 jobs:
   check:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    container: ilya0100/clang_hw
     steps:
       - uses: actions/checkout@v2
       - run: make check
 
   build:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    container: ilya0100/clang_hw
     needs: [check]
     steps:
     - uses: actions/checkout@v2
@@ -18,7 +18,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    container: ilya0100/clang_hw
     needs: [build]
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
 
   memtest:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    container: ilya0100/clang_hw
     needs: [test]
     steps:
       - uses: actions/checkout@v2
@@ -34,10 +34,8 @@ jobs:
 
   covtest:
     runs-on: ubuntu-latest
-    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    container: ilya0100/clang_hw
     needs: [test]
     steps:
       - uses: actions/checkout@v2
-      - run: |
-        sudo apt install lcov
-        make test && make covtest
+      - run: make covtest
