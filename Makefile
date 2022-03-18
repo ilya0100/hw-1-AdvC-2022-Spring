@@ -1,4 +1,4 @@
-.PHONY: all build rebuild check test memtest clean code_coverage
+.PHONY: all build rebuild check test memtest clean covtest
 
 all: clean check build test memtest
 
@@ -21,3 +21,6 @@ test:
 memtest:
 	./build.sh
 	./memtest.sh ./build/tests/test_group_data
+
+covtest: rebuild test
+	./code_cov.sh

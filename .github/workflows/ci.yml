@@ -31,3 +31,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: make memtest
+
+  covtest:
+    runs-on: ubuntu-latest
+    container: leshiy1295/gcc_linters_valgrind_cmake_gtest
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+        sudo apt install lcov
+        make test && make covtest
