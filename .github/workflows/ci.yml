@@ -39,5 +39,4 @@ jobs:
     steps:
       - name: upload covarage reports to Codecov
       - uses: actions/checkout@v2 
-      - run: |
-          make covtest
+      - run: make covtest
