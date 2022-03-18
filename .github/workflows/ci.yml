@@ -37,5 +37,7 @@ jobs:
     container: ilya0100/clang_hw
     needs: [test]
     steps:
-      - uses: actions/checkout@v2
-      - run: make covtest
+      - name: upload covarage reports to Codecov
+      - uses: actions/checkout@v2 
+      - run: |
+          make covtest
